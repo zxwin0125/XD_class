@@ -3,7 +3,7 @@
     <!-- 轮播图组件 -->
     <home-banner :banners="banners"></home-banner>
     <!-- 视频列表组件 -->
-    <video-list :videoList="videoList"></video-list>
+    <!-- <video-list :videoList="videoList"></video-list> -->
     <!-- 底部导航栏组件 -->
     <common-footer></common-footer>
   </div>
