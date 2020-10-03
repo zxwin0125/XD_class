@@ -6,7 +6,7 @@ import axios from 'axios'
 const service = axios.create({
     // url = baseURL + request url
     // 根目录
-    baseURL: 'http://47.112.124.138:8089',
+    baseURL: 'https://test.icanci.cn',
 
     // 配置请求超时时间
     timeout: 5000

@@ -3,14 +3,16 @@ module.exports = {
     loaderOptions: {
       stylus: {
         'resolve url': true,
-        'import': []
+        'import': [
+          './src/theme'
+        ]
       }
     }
   },
   pluginOptions: {
     'cube-ui': {
-      postCompile: false,
-      theme: false
+      postCompile: true,
+      theme: true
     }
   }
 }
