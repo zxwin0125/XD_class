@@ -1,9 +1,8 @@
 <template>
   <div class="main">
     <cube-form :model="model" @submit="submitHandler">
-      
       <cube-form-group>
-          <!--名称-->
+        <!--名称-->
         <cube-form-item :field="fields[0]"></cube-form-item>
         <!--手机号-->
         <cube-form-item :field="fields[1]"></cube-form-item>
@@ -11,14 +10,12 @@
         <cube-form-item :field="fields[2]"></cube-form-item>
       </cube-form-group>
 
-
       <cube-form-group>
         <cube-button type="submit">注册</cube-button>
       </cube-form-group>
-
-
     </cube-form>
-    <router-link to="/login" class="reg">登录</router-link> 
+    <!-- 跳转到登陆链接 -->
+    <router-link to="/login" class="reg">登录</router-link>
   </div>
 </template>
 
@@ -31,35 +28,44 @@ export default {
       model: {
         phoneValue: "",
         pwdValue: "",
-        nameValue: ""
+        nameValue: "",
       },
-      fields: [ {
+      // 校验规则部分
+      fields: [
+        {
           type: "input",
           modelKey: "nameValue",
           label: "名称",
           props: {
-            placeholder: "请输入名称"
+            // 属性
+            placeholder: "请输入名称",
           },
           rules: {
-            required: true
+            // 规则
+            required: true,
+            notWhitespace: true
           },
           messages: {
-            required: "名称不能为空"
-          }
+            // 错误信息
+            required: "名称不能为空",
+            notWhitespace: "名称不能为空白符"
+          },
         },
         {
           type: "input",
           modelKey: "phoneValue",
           label: "手机号",
           props: {
-            placeholder: "请输入手机"
+            placeholder: "请输入手机",
           },
           rules: {
-            required: true
+            required: true,
+            len: 11,
+            pattern: /^1[3456789]\d{9}$/,
           },
           messages: {
-            required: "手机号不能为空"
-          }
+            pattern: "请输入正确的手机号",
+          },
         },
         {
           type: "input",
@@ -69,18 +75,17 @@ export default {
             placeholder: "请输入密码",
             type: "password",
             eye: {
-              open: false
-            }
+              open: false,
+            },
           },
           rules: {
-            required: true
+            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/
           },
           messages: {
-            required: "密码不能为空"
-          }
-        }
-       
-      ]
+            pattern: "密码至少8-16个字符,包含大小字母和数字",
+          },
+        },
+      ],
     };
   },
   methods: {
@@ -88,19 +93,19 @@ export default {
       e.preventDefault();
       //调用注册接口
       registerApi(model.phoneValue, model.pwdValue, model.nameValue).then(
-        res => {
+        (res) => {
           if (res.data.code === 0) {
             const toast = this.$createToast({
               txt: "注册成功",
               type: "correct",
-              time: 1500
+              time: 1500,
             });
             toast.show();
           }
         }
       );
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
