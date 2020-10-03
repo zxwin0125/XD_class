@@ -38,10 +38,13 @@ export default {
             placeholder: "请输入手机"
           },
           rules: {
-            required: true
+            required: true,
+            len: 11,
+            pattern: /^1[3456789]\d{9}$/,
           },
           messages: {
-            required: "手机号不能为空"
+            required: "手机号不能为空",
+            pattern: "请输入正确的手机号",
           }
         },
         {
@@ -56,10 +59,12 @@ export default {
             }
           },
           rules: {
-            required: true
+            required: true,
+            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/
           },
           messages: {
-            required: "密码不能为空"
+            required: "密码不能为空",
+            pattern: "密码至少8-16个字符,包含大小字母和数字"
           }
         }
       ]
@@ -72,12 +77,13 @@ export default {
       loginApi(model.phoneValue, model.pwdValue).then(
         res => {
           if (res.data.code === 0) {
-            //登录成功，跳转到个人中心
+            // 登录成功，跳转到个人中心
+            // 拿到 token，存储到本地
             localStorage.setItem('token',res.data.data)
             
             this.$store.dispatch('setToken',res.data.data)
 
-            //跳转页面, 根据业务需要
+            // 跳转页面, 根据业务需要
             this.$router.push({path:'/personal'})
 
           }else{
