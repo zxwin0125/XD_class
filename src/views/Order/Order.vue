@@ -84,7 +84,7 @@ export default {
     justify-content: space-between;
     .imgdiv {
       width: 90px;
-      height: 60px;
+      height: 69px;
       flex-shrink: 0;
       img {
         width: 100%;
@@ -92,10 +92,14 @@ export default {
         border-radius: 10px;
       }
     }
-    .textdiv p {
+    .textdiv {
+      width: 100%;
+      p {
       margin-top: 10px;
-      padding-left: 10px;
+      padding-left: 20px;
     }
+    }
+    
   }
 }
 

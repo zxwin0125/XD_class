@@ -61,10 +61,11 @@ export default {
           rules: {
             required: true,
             len: 11,
-            pattern: /^1[3456789]\d{9}$/,
+            // pattern: /^1[3456789]\d{9}$/,
           },
           messages: {
-            pattern: "请输入正确的手机号",
+            required: "手机号不为空",
+            // pattern: "请输入正确的手机号",
           },
         },
         {
@@ -79,10 +80,12 @@ export default {
             },
           },
           rules: {
-            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/
+            required: true,
+            // pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/
           },
           messages: {
-            pattern: "密码至少8-16个字符,包含大小字母和数字",
+            required: "密码不为空",
+            // pattern: "密码至少8-16个字符,包含大小字母和数字",
           },
         },
       ],
@@ -100,6 +103,9 @@ export default {
               txt: "注册成功",
               type: "correct",
               time: 1500,
+              onTimeout: () => {
+                this.$router.push({ path: "login" });
+              },
             });
             toast.show();
           }

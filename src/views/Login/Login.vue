@@ -40,11 +40,11 @@ export default {
           rules: {
             required: true,
             len: 11,
-            pattern: /^1[3456789]\d{9}$/,
+            // pattern: /^1[3456789]\d{9}$/,
           },
           messages: {
             required: "手机号不能为空",
-            pattern: "请输入正确的手机号",
+            // pattern: "请输入正确的手机号",
           }
         },
         {
@@ -60,11 +60,11 @@ export default {
           },
           rules: {
             required: true,
-            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/
+            // pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/
           },
           messages: {
             required: "密码不能为空",
-            pattern: "密码至少8-16个字符,包含大小字母和数字"
+            // pattern: "密码至少8-16个字符,包含大小字母和数字"
           }
         }
       ]
