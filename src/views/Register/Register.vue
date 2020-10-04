@@ -90,6 +90,7 @@ export default {
   },
   methods: {
     submitHandler(e, model) {
+      console.log(model);
       e.preventDefault();
       //调用注册接口
       registerApi(model.phoneValue, model.pwdValue, model.nameValue).then(
